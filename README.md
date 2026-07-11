@@ -1,5 +1,8 @@
 # 400km Drone Test — HF Radio Communication Simulator
 
+**Status:** ✅ Working — interactive HF radio simulator, jamming, telemetry tested
+
+
 **A long-range (400 km) drone communication simulator that models an HF (High Frequency) radio channel in the 2–5 MHz range, with telemetry protocol and jamming filtering.**
 
 ## 📡 Description
