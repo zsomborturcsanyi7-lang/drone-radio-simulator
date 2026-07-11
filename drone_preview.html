@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UAV AI GEN - Pro Preview</title>
+    <style> 
+        body { margin: 0; background: #050505; color: #eee; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        #ui { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 25px; border-radius: 12px; border-left: 5px solid #ffaa00; width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h2 { margin: 0 0 10px 0; color: #ffaa00; font-size: 18px; text-transform: uppercase; }
+        .stat { margin: 8px 0; font-size: 14px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .val { float: right; font-weight: bold; color: #fff; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <h2>UAV Design Finalized</h2>
+        <div class="stat">Konfiguráció: <span class="val">Premium</span></div>
+        <div class="stat">Motorok: <span class="val">T-Motor MN605-S</span></div>
+        <div class="stat">Generátor: <span class="val">2kW Hybrid</span></div>
+        <div class="stat">Összsúly: <span class="val">5152 g</span></div>
+        <div class="stat">Költség: <span class="val">2,420,000 HUF</span></div>
+        <div class="stat">Antenna: <span class="val">280 mm</span></div>
+    </div>
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
+        import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js';
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        // Fények
+        const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambient);
+        const sun = new THREE.DirectionalLight(0xffffff, 1);
+        sun.position.set(5, 10, 7);
+        scene.add(sun);
+
+        // Anyagok
+        const matCarbon = new THREE.MeshPhongMaterial({ color: 0x111111, shininess: 80 });
+        const matMetal = new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 0.9, roughness: 0.2 });
+        const matProp = new THREE.MeshPhongMaterial({ color: 0xffaa00, transparent: true, opacity: 0.4 });
+
+        // 1. TÖRZS (Detailed)
+        const frame = new THREE.Mesh(new THREE.BoxGeometry(3.5, 0.3, 1.2), matCarbon);
+        scene.add(frame);
+        
+        // 2. GENERÁTOR (Visual Component)
+        const gen = new THREE.Group();
+        const genBlock = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.8, 1), matMetal);
+        gen.add(genBlock);
+        const exhaust = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.5), matMetal);
+        exhaust.position.set(0.4, 0.5, 0);
+        gen.add(exhaust);
+        gen.position.set(0.5, 0.4, 0);
+        scene.add(gen);
+
+        // 3. KAROK ÉS EGYSÉGEK
+        const props = [];
+        const pos = [[1.8, 1.3], [1.8, -1.3], [-1.8, 1.3], [-1.8, -1.3]];
+        pos.forEach(p => {
+            const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.5), matCarbon);
+            arm.rotation.z = Math.PI/2;
+            arm.rotation.y = Math.atan2(p[1], p[0]);
+            arm.position.set(p[0]/2, 0, p[1]/2);
+            scene.add(arm);
+
+            const motor = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.25), matMetal);
+            motor.position.set(p[0], 0.2, p[1]);
+            scene.add(motor);
+
+            const prop = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.01, 0.2), matProp);
+            prop.position.set(p[0], 0.4, p[1]);
+            scene.add(prop);
+            props.push(prop);
+        });
+
+        // 4. EMI SHIELD
+        const shield = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.5, 1.3), matMetal);
+        shield.position.y = 0.5;
+        scene.add(shield);
+
+        // 5. HF ANTENNA
+        const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 3), new THREE.MeshBasicMaterial({color: 0xff0000}));
+        ant.position.set(5.6, 1.2, 0);
+        scene.add(ant);
+
+        scene.add(new THREE.GridHelper(20, 20, 0x222222, 0x111111));
+        camera.position.set(6, 4, 6);
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            props.forEach(p => p.rotation.y += 0.3);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>

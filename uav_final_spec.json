@@ -1,0 +1,78 @@
+{
+    "uav_project_name": "LongRange_Hybrid_UAV_400km",
+    "iteration": 2,
+    "final_specs": {
+        "total_weight_g": 9330,
+        "thrust_weight_ratio": 1.63,
+        "flight_time_estimate_min": 120,
+        "total_cost_huf": 1310000
+    },
+    "bill_of_materials": {
+        "motors": {
+            "name": "Generic 5010 Motor",
+            "weight_g": 350,
+            "thrust_max_g": 3800,
+            "price_huf": 45000,
+            "qty": 4,
+            "desc": "Költséghatékony motor választás."
+        },
+        "esc": {
+            "name": "Hobbywing 40A ESC",
+            "weight_g": 50,
+            "price_huf": 15000,
+            "qty": 4,
+            "desc": "Alapvető szabályozó elektronika."
+        },
+        "generator": {
+            "name": "DIY Gas Gen Retrofit",
+            "weight_g": 2500,
+            "price_huf": 550000,
+            "qty": 1,
+            "desc": "Módosított benzines generátor."
+        },
+        "fc": {
+            "name": "Pixhawk 4 Kit",
+            "weight_g": 90,
+            "price_huf": 120000,
+            "qty": 1,
+            "desc": "Megbízható nyílt forráskódú FC."
+        },
+        "battery": {
+            "name": "HRB 6S 22Ah LiPo",
+            "weight_g": 2800,
+            "price_huf": 140000,
+            "qty": 1,
+            "desc": "Standard LiPo puffer."
+        },
+        "gps": {
+            "name": "M8N GPS Unit",
+            "weight_g": 40,
+            "price_huf": 25000,
+            "qty": 1,
+            "desc": "Alapvető GPS vevő."
+        },
+        "radio_hf": {
+            "name": "Generic HF Modem",
+            "weight_g": 600,
+            "price_huf": 220000,
+            "qty": 1,
+            "desc": "Belépő szintű HF rádió egység."
+        },
+        "tank": {
+            "name": "Standard Plastic 3L Tank",
+            "weight_g": 500,
+            "price_huf": 15000,
+            "qty": 1,
+            "desc": "Sztenderd műanyag tartály."
+        }
+    },
+    "engineering_geometry": {
+        "arm_length_mm": 566.5714285714286,
+        "antenna_dist_mm": 250,
+        "shield_thickness_mm": 1.0
+    },
+    "validation_report": [
+        "PASS: TWR arány megfelelő (1.63)",
+        "SUCCESS: Minden rendszerelem kompatibilis."
+    ]
+}
