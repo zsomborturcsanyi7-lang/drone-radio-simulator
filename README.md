@@ -1,127 +1,130 @@
-# 400km Drón Teszt — HF Rádiókommunikációs Szimulátor
+# 400km Drone Test — HF Radio Communication Simulator
 
-**Nagy hatótávolságú (400 km) drón kommunikációs szimulátor, amely HF (High Frequency) rádiócsatornát modellez 2-5 MHz tartományban, telemetria protokollal és zavarásszűréssel (jamming).**
+**A long-range (400 km) drone communication simulator that models an HF (High Frequency) radio channel in the 2–5 MHz range, with telemetry protocol and jamming filtering.**
 
-## 📡 Leírás
+## 📡 Description
 
-Ez a szimulátor egy 400 km távolságban működő drón földi állomással folytatott kommunikációját modellezi:
+This simulator models communication between a drone and a ground station over a 400 km distance:
 
-- **HF rádiócsatorna** — 2, 3, 4, 5 MHz frekvenciákon
-- **Valós idejű szimuláció** — 5 másodperces kommunikációs ciklusok
-- **Jamming szimuláció** — zavarás kapcsolása egyes frekvenciákon
-- **Telemetria protokoll** — strukturált adatcsomagok küldése
-- **Interaktív irányítás** — billentyűzetről vezérelhető (jamming ki/be)
+- **HF radio channel** — on 2, 3, 4, 5 MHz frequencies
+- **Real-time simulation** — 5-second communication cycles
+- **Jamming simulation** — toggle jamming on individual frequencies
+- **Telemetry protocol** — structured data packet transmission
+- **Interactive control** — keyboard-driven (jamming on/off)
 
-### Fő komponensek
+### Core Components
 
-| Komponens | Fájl | Leírás |
-|-----------|------|--------|
-| Drón | `drone.py` | A drón oldali adó-vevő és telemetria küldő |
-| Földi állomás | `ground_station.py` | Földi vevő és parancsküldő |
-| Rádiócsatorna | `radio_channel.py` | HF csatorna modell fadinggel és zajjal |
-| Protokoll | `telemetry_protocol.py` | Csomagformátum és adatstruktúra |
-| Fő program | `main.py` | Interaktív szimulátor |
+| Component | File | Description |
+|-----------|------|-------------|
+| Drone | `drone.py` | Drone-side transceiver and telemetry sender |
+| Ground Station | `ground_station.py` | Ground receiver and command sender |
+| Radio Channel | `radio_channel.py` | HF channel model with fading and noise |
+| Protocol | `telemetry_protocol.py` | Packet format and data structure |
+| Main Program | `main.py` | Interactive simulator |
 
-## 📁 Fájlszerkezet
+## 📁 File Structure
 
 ```
 400km dron test/
-├── main.py                      # Fő program — interaktív szimulátor
-├── drone.py                     # Drón oldali logika
-├── ground_station.py            # Földi állomás
-├── radio_channel.py             # HF rádiócsatorna modell
-├── telemetry_protocol.py        # Telemetria protokoll
-├── automated_test.py            # Automatizált teszt
-├── uav_swarm_designer.py        # Drónraj tervező
-├── uav_design_output.py         # Tervezési kimenet
-├── drone_preview.html           # Drón vizualizáció (HTML)
-├── uav_final_spec.json          # Végleges specifikáció
+├── main.py                      # Main program — interactive simulator
+├── drone.py                     # Drone-side logic
+├── ground_station.py            # Ground station
+├── radio_channel.py             # HF radio channel model
+├── telemetry_protocol.py        # Telemetry protocol
+├── automated_test.py            # Automated test
+├── uav_swarm_designer.py        # Drone swarm designer
+├── uav_design_output.py         # Design output
+├── drone_preview.html           # Drone visualization (HTML)
+├── uav_final_spec.json          # Final specification
 └── README.md
 ```
 
-## 🚀 Használat
+## 🚀 Usage
 
-### Interaktív szimulátor indítása
+### Launch interactive simulator
 
 ```bash
 python main.py
 ```
 
-### Parancsok
+### Commands
 
-| Billentyű | Művelet |
-|-----------|---------|
-| `2` | Jamming bekapcsolása 2 MHz-en |
-| `3` | Jamming bekapcsolása 3 MHz-en |
-| `4` | Jamming bekapcsolása 4 MHz-en |
-| `5` | Jamming bekapcsolása 5 MHz-en |
-| `c` | Összes jamming törlése |
-| `q` | Kilépés |
+| Key | Action |
+|-----|--------|
+| `2` | Enable jamming on 2 MHz |
+| `3` | Enable jamming on 3 MHz |
+| `4` | Enable jamming on 4 MHz |
+| `5` | Enable jamming on 5 MHz |
+| `c` | Clear all jamming |
+| `q` | Quit |
 
-### Automatizált teszt
+### Automated test
 
 ```bash
 python automated_test.py
 ```
 
-### Drónraj tervező
+### Drone swarm designer
 
 ```bash
 python uav_swarm_designer.py
 ```
 
-### Kimenet példa
+### Sample output
 
 ```
 ==================================================
- DRÓN HF KOMMUNIKÁCIÓ SZIMULÁTOR (2-5 MHz)
+ DRONE HF COMMUNICATION SIMULATOR (2–5 MHz)
 ==================================================
- Parancsok:
-  '2', '3', '4', '5' - Jamming kapcsolása
-  'c'                - Összes jamming törlése
-  'q'                - Kilépés
+ Commands:
+  '2', '3', '4', '5' - Toggle jamming
+  'c'                - Clear all jamming
+  'q'                - Quit
 ==================================================
 
-[2.0 MHz] Drón → Föld: OK | SNR: 12.3 dB
-[3.0 MHz] Drón → Föld: JAMMING!! | SNR: -5.2 dB
-[4.0 MHz] Drón → Föld: OK | SNR: 10.8 dB
-[5.0 MHz] Drón → Föld: OK | SNR: 9.1 dB
+[2.0 MHz] Drone → Ground: OK | SNR: 12.3 dB
+[3.0 MHz] Drone → Ground: JAMMING!! | SNR: -5.2 dB
+[4.0 MHz] Drone → Ground: OK | SNR: 10.8 dB
+[5.0 MHz] Drone → Ground: OK | SNR: 9.1 dB
 ```
 
-## 📦 Függőségek
+## 📦 Dependencies
 
 ```bash
 pip install numpy
 ```
 
 - **Python 3.8+**
-- **numpy** — jelfeldolgozás és fading szimuláció
-- **msvcrt** (Windows standard library) — billentyűzet figyelés
+- **numpy** — signal processing and fading simulation
+- **msvcrt** (Windows standard library) — keyboard monitoring
 
-## 🔬 Szimulációs modell
+## 🔬 Simulation Model
 
-### Rádiócsatorna paraméterek
+### Radio Channel Parameters
 
-- **Frekvencia:** 2-5 MHz (HF sáv)
-- **Távolság:** 400 km
-- **Fading:** Rayleigh fading modell
-- **Zaj:** Additív fehér Gauss-zaj (AWGN)
-- **Moduláció:** Szimulált digitális moduláció
+- **Frequency:** 2–5 MHz (HF band)
+- **Distance:** 400 km
+- **Fading:** Rayleigh fading model
+- **Noise:** Additive White Gaussian Noise (AWGN)
+- **Modulation:** Simulated digital modulation
 
-### Telemetria adatok
+### Telemetry Data
 
 ```
-Csomag formátum:
-├── Header (azonosító, időbélyeg)
-├── Pozíció (GPS koordináták)
-├── Sebesség és magasság
-├── Akkumulátor státusz
-└── Szenzor adatok
+Packet format:
+├── Header (identifier, timestamp)
+├── Position (GPS coordinates)
+├── Speed and altitude
+├── Battery status
+└── Sensor data
 ```
 
-## 🎯 Alkalmazási terület
+## 🎯 Application Areas
 
-- Drón kommunikációs rendszerek tesztelése
-- Zavarásszűrési stratégiák fejlesztése
-- HF rádiós protokollok validálása
-- Katonai/polgári UAV kommunikáció modellezése
+- Testing drone communication systems
+- Developing anti-jamming strategies
+- Validating HF radio protocols
+- Modeling military/civilian UAV communication
+
+## Author
+Zsombi & Hermes Agent (Nous Research)
