@@ -5,6 +5,14 @@
 
 **A long-range (400 km) drone communication simulator that models an HF (High Frequency) radio channel in the 2–5 MHz range, with telemetry protocol and jamming filtering.**
 
+## ⚠️ THIS PROJECT IS UNFINISHED — FEEL FREE TO CONTINUE IT ⚠️
+
+**Ez a projekt NINCS KÉSZEN. Bárki folytathatja, aki akarja!**
+Ezt a projektet Zsombi & Hermes Agent (Nous Research) közösen fejlesztette, de egyik projekt sincs 100%-osan befejezve. Ha tetszik az ötlet és tovább fejlesztenéd, nyugodtan fork-old, folytasd, és csinálj belőle valami nagyszerűt!
+
+---
+
+
 ## 📡 Description
 
 This simulator models communication between a drone and a ground station over a 400 km distance:
