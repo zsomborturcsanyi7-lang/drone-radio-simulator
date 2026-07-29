@@ -1,25 +1,19 @@
 # drone-radio-simulator
 
-**Status:** ✅ Working — interactive HF radio simulator, jamming, telemetry tested
+HF rádiókommunikációs szimulátor drónokhoz (2-5 MHz).
 
-Python simulator for HF radio communication between a drone and ground station over 400 km, 2-5 MHz range. Includes jamming filtering and telemetry protocol.
+## 📌 A projekt célja
+Drónok és földi állomások közötti telemetriai kommunikáció és zavarás szimulálása.
 
-## ⚠️ THIS PROJECT IS UNFINISHED — FEEL FREE TO CONTINUE IT ⚠️
+## ⚙️ Technológiai stakk
+- Python, SciPy, Matplotlib
 
-This project was developed by Zsombi & Hermes Agent (Nous Research).
+## 🚀 Telepítés és Használat
+```bash
+git clone https://github.com/zsomborturcsanyi7-lang/drone-radio-simulator.git
+cd drone-radio-simulator
+python simulator.py
+```
 
----
-
-## Files
-| File | Description |
-|------|-------------|
-| `main.py` | Main simulator |
-| `drone.py` | Drone model |
-| `ground_station.py` | Ground station |
-| `radio_channel.py` | HF radio channel model |
-| `telemetry_protocol.py` | Telemetry protocol |
-| `automated_test.py` | Automated tests |
-| `uav_swarm_designer.py` | UAV swarm designer |
-
-## Developer
-Zsombi & Hermes Agent (Nous Research)
+## 📊 Status
+⚠️ **Szimulációs prototípus**.
