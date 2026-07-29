@@ -1,4 +1,4 @@
-# HF Radio Communication Simulator for Drones (2-5 MHz, 400 km)
+# drone-radio-simulator
 
 **Status:** ✅ Working — interactive HF radio simulator, jamming, telemetry tested
 
